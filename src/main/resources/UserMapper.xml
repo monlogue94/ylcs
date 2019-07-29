@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace:表示命名空间，我们在这里，填写的是你的那个接口的全路径-->
+<mapper namespace="mybatis.mapper.UserMapper">
+
+
+    <!--id:接口中的方法我们用的什么名字，那么这个id我们就用什么名字
+        parameterType:表示输入参数的类型，在这里，我们是通过ID来查找，所以那么类型就应该是int类型
+        resultType:输出结果的类型，我们输出的结果是一个用户，里面包括姓名，生日等信息，
+                   所以这里应该用User类型。记得要写类的全路径哦。
+        #{}:表示一个占位符
+        #{value}：因为我们要输入是简单类型，所以可以稍微随意起名字，所以这个value是可变的，你改成LOL都可以，
+                  或者你改成其他的a或者b什么的，都是可行的。
+
+    -->
+    <select id="findUserById" parameterType="int" resultType="mybatis.po.User">
+
+        <!--这个就是之前我们在表中测试能够得到数据的sql语句哦-->
+        SELECT * FROM USER WHERE id=#{value}
+    </select>
+
+
+
+    <delete id="deleteUser" parameterType="int" >
+       DELETE FROM USER WHERE id=#{id}
+    </delete>
+</mapper>
+
